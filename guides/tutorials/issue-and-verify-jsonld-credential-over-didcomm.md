@@ -1,6 +1,9 @@
 # Issue and Verify a JSON-LD Credential over DIDComm
 
-In this tutorial we will issue a JSON-LD credential from _Issuer_ to _Holder_ over DIDComm, starting with _Holder_ proposing a credential, followed by the complete issuance flow, and ending with a verification process. We will start with setting up both the agents with the minimal configuration required to follow this tutorial. It is assumed that there is a connection between _Issuer_ and _Holder_, and _Issuer_ has a registered DID with appropriate verification methods. The flow follows the complete credential lifecycle: proposal → offer → request → issuance → acknowledgment → verification.
+In this tutorial, we’ll walk through issuing a JSON-LD Verifiable Credential, signed by a Decentralized Identifier (DID), using Credo. The process begins with the _Holder_ proposing a credential and follows the full issuance flow over DIDComm, concluding with credential verification. We'll start by setting up both the _Issuer_ and _Holder_ agents with the minimal configuration needed for this walkthrough.
+
+We assume that a DIDComm connection is already established between the _Issuer_ and _Holder_, and that the _Issuer_ has a registered DID with appropriate verification methods. The credential lifecycle covered includes:
+proposal → offer → request → issuance → acknowledgment → verification.
 
 _Using [W3C Verifiable Credentials](https://www.w3.org/TR/vc-data-model/) with JSON-LD format and the [Issue Credential V2 Protocol](https://github.com/hyperledger/aries-rfcs/blob/main/features/0453-issue-credential-v2/README.md) and [Present Proof V2 Protocol](https://github.com/hyperledger/aries-rfcs/blob/main/features/0454-present-proof-v2/README.md)._
 
@@ -9,15 +12,15 @@ _Using [W3C Verifiable Credentials](https://www.w3.org/TR/vc-data-model/) with J
 This tutorial assumes that
 
 1. You have [set-up your development environment](../getting-started).
-1. You have basic knowledge of the required fields in the [Agent Config](./agent-config)
-1. You have completed the [Create a Connection tutorial](./create-a-connection)
-1. You have a registered DID with appropriate verification methods (e.g., did:cheqd, did:key, or did:web)
+2. You have basic knowledge of the required fields in the [Agent Config](./agent-config).
+3. You have completed the [Create a Connection tutorial](./create-a-connection).
+4. You have a registered DID with appropriate verification methods (e.g., `did:cheqd`, `did:key`, or `did:web`).
 
 :::
 
 ## 1. Setting up the agents
 
-First for both agents we must setup and initialize an agent to work with. Depending on your target, [React Native](../getting-started/installation/react-native) or [Node.js](../getting-started/installation/react-native), it might vary.
+First, for both agents, we must setup and initialize an agent to work with. Depending on your target, [React Native](../getting-started/installation/react-native) or [Node.js](../getting-started/installation/react-native), it might vary.
 
 In this tutorial both _Holder_ and _Issuer_ will be in a [Node.js environment](../getting-started/installation/nodejs).
 
@@ -108,11 +111,11 @@ After the credential has been successfully issued and stored, _Issuer_ can reque
 
 When working with JSON-LD credentials compared to AnonCreds, note these important differences:
 
-1. **Credential Format**: JSON-LD credentials use W3C Verifiable Credentials standard with JSON-LD context
+1. **Credential Format**: JSON-LD credentials use the W3C Verifiable Credential Data Model with JSON-LD context.
 2. **Proof Types**: Uses cryptographic proof types like Ed25519Signature2018, BbsBlsSignature2020, etc.
-3. **DID Requirements**: Requires resolvable DIDs with appropriate verification methods
-4. **Verification**: Uses Presentation Exchange for proof requests instead of AnonCreds predicates
-5. **Privacy**: Less privacy-preserving than AnonCreds (no zero-knowledge proofs by default)
+3. **DID Requirements**: Requires resolvable DIDs with appropriate verification methods.
+4. **Verification**: Uses Presentation Exchange for proof requests instead of AnonCreds predicates.
+5. **Privacy**: Less privacy-preserving than AnonCreds by default (no zero-knowledge proofs in the core data model).
 
 ## Useful resources
 
